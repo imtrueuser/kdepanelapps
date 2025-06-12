@@ -575,10 +575,10 @@ PlasmaCore.ToolTipArea {
                     easing.type: Easing.InOutQuad
                 }
             }
-
+// This block might not be necessary, but I like my things optically aligned
             transform: Translate {
                 id: iconTranslate
-                x: -4
+                x: -4 
             }
         }
 
@@ -626,7 +626,7 @@ PlasmaCore.ToolTipArea {
                 }
             }
 
-            // Bounce right + scale up together
+            // Bounce right
                 PropertyAnimation {
                     target: iconTranslate
                     property: "x"
@@ -637,7 +637,7 @@ PlasmaCore.ToolTipArea {
 
 
 
-            // Bounce left + scale down together
+            // Bounce left + scale up together
             ParallelAnimation {
                 PropertyAnimation {
                     target: iconTranslate
@@ -657,9 +657,8 @@ PlasmaCore.ToolTipArea {
 
 
 
-
+// Return to center (and restores the scaling)
             ParallelAnimation {
-            // Return to center (scale stays the same)
             PropertyAnimation {
                 target: iconTranslate
                 property: "x"
@@ -680,6 +679,7 @@ PlasmaCore.ToolTipArea {
 
         Rectangle {
             id: openBar
+// These need to be swapped if your panel is horizontal
             width: 3
             height: {
                 if (model.IsWindow) {
@@ -693,9 +693,10 @@ PlasmaCore.ToolTipArea {
             radius: width / 2
             anchors.verticalCenter: icon.verticalCenter
             anchors.right: icon.right
-            anchors.rightMargin: 2
+            anchors.rightMargin: 2 // This needs to match your panel position
             z: 999
 
+// These are from Catppuccin Mocha Sapphire pallete
             color: {
                 if (model.IsWindow) {
                     if (model.IsActive)
